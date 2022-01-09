@@ -1,6 +1,6 @@
 <template>
-  <section class="text-gray-700 body-font overflow-hidden bg-white">
-    <div class="container px-5 py-14 mx-auto">
+  <section>
+    <div class="px-5 py-14 mx-auto">
       <div class="lg:w-4/5 mx-auto flex flex-row">
         <div class="w-full space-y-4">
           <nuxt-link class="underline" to="/">Back</nuxt-link>
@@ -88,6 +88,7 @@ import {
 
 export default defineComponent({
   name: 'PokemonDetail',
+  scrollToTop: true,
   fetchOnServer: false,
   setup() {
     const { store, params } = useContext()
@@ -104,3 +105,9 @@ export default defineComponent({
   },
 })
 </script>
+
+<style lang="postcss" scoped>
+section {
+  @apply text-gray-700 overflow-hidden bg-white;
+}
+</style>

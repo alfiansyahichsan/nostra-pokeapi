@@ -2,7 +2,7 @@
   <nuxt-link :to="`/pokemon/${data.id}`">
     <div class="card">
       <div class="img">
-        <img class="rounded-xl" :src="data.img" alt="Dog" />
+        <img :src="data.img" :alt="data.name" />
       </div>
       <div class="content">
         <h1>{{ data.name }}</h1>
@@ -31,6 +31,9 @@ export default defineComponent({
 
   .img {
     @apply p-4 sm:h-52 xl:h-96;
+    img {
+      @apply rounded-xl;
+    }
   }
 
   .content {

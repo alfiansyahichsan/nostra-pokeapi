@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'nostra-poke',
+    title: 'Poke API | Nostra',
     htmlAttrs: {
       lang: 'en',
     },
