@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
   purge: {
-    // enabled: true,
+    enabled: true,
     content: [
       `components/**/*.{vue,js}`,
       `layouts/**/*.vue`,
