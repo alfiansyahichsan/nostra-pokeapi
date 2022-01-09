@@ -1,11 +1,7 @@
 <template>
   <div class="card" @click="$emit('poke-detail', url)">
     <div class="img">
-      <img
-        class="rounded-xl"
-        src="https://images.unsplash.com/photo-1542779283-429940ce8336?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-        alt="Dog"
-      />
+      <img class="rounded-xl" :src="img" alt="Dog" />
     </div>
     <div class="content">
       <h1>{{ title }}</h1>
@@ -24,6 +20,10 @@ export default defineComponent({
       default: '',
     },
     url: {
+      type: String,
+      default: '',
+    },
+    img: {
       type: String,
       default: '',
     },

@@ -27,6 +27,14 @@ export const mutations: MutationTree<RootState> = {
 export const actions: ActionTree<RootState, RootState> = {
   async fetchPokemons({ commit }, url: string = "https://pokeapi.co/api/v2/pokemon") {
     const res = await this.$axios.$get(url)
+    res.results = res.results.map((item: { name: any; url: any }) => {
+      return {
+        name: item.name,
+        url: item.url,
+        img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${item.url.split('/')[6]}.png`
+      }
+    })
+    
     commit('SET_POKEMONS', res)
   },
 }
