@@ -14,6 +14,11 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  env: {
+    POKE_URL: process.env.POKE_URL,
+    POKE_URL_IMG: process.env.POKE_URL_IMG,
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['@/assets/main.css'],
 

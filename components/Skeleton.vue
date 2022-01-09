@@ -8,7 +8,7 @@
 import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
-  name: 'SkeletonComp',
+  name: 'BaseSkeleton',
   props: {
     width: { type: [String, Number], default: '100%' },
     height: { type: [String, Number], default: 'h-20' },

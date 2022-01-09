@@ -3,32 +3,33 @@
     <Hero />
 
     <section>
-      <Pagination
-        :prev="pokemons.previous"
-        :next="pokemons.next"
-        @handle-pagination="paginationPokemons"
-      />
+      <div class="mx-auto sm:px-28">
+        <div class="flex flex-row items-center justify-between pb-4">
+          <Select />
 
-      <div
-        v-if="$fetchState.pending"
-        class="mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:px-28"
-      >
-        <Skeleton height="h-80" corner="rounded-xl" />
-        <Skeleton height="h-80" corner="rounded-xl" />
-        <Skeleton height="h-80" corner="rounded-xl" />
-      </div>
-      <div
-        v-else
-        class="mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 sm:px-28"
-      >
-        <Card
-          v-for="(item, index) in pokemons.results"
-          :key="index"
-          :title="item.name"
-          :url="item.url"
-          :img="item.img"
-          @poke-detail="goToPokeDetail"
-        />
+          <Pagination
+            :prev="previous"
+            :next="next"
+            @handle-pagination="paginationPokemons"
+          />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <template v-if="$fetchState.pending">
+            <Skeleton
+              v-for="(item, index) in 6"
+              :key="index"
+              height="h-96"
+              corner="rounded-xl"
+            />
+          </template>
+          <Card
+            v-for="(item, index) in pokemons"
+            v-else
+            :key="`${index} - ${item.name}`"
+            :data="item"
+          />
+        </div>
       </div>
     </section>
   </div>
@@ -42,11 +43,9 @@ import {
   useFetch,
   computed,
 } from '@nuxtjs/composition-api'
-import Skeleton from '~/components/Skeleton.vue'
 
 export default defineComponent({
   name: 'IndexPage',
-  components: { Skeleton },
   fetchOnServer: false,
   setup() {
     const { store } = useContext()
@@ -55,23 +54,20 @@ export default defineComponent({
       await store.dispatch('fetchPokemons')
     })
 
-    const pokemons = computed(() => store.state.pokemons)
-
     const paginationPokemons = (url: string): void => {
       store.dispatch('fetchPokemons', url)
     }
 
-    const goToPokeDetail = (url: string): void => {
-      console.log(url)
-    }
+    const pokemons = computed(() => store.state.pokemons)
+    const previous = computed(() => store.state.previous)
+    const next = computed(() => store.state.next)
 
     return {
       pokemons,
       paginationPokemons,
-      goToPokeDetail,
+      previous,
+      next,
     }
   },
 })
 </script>
-
-<style lang="postcss" scoped></style>

@@ -1,31 +1,25 @@
 <template>
-  <div class="card" @click="$emit('poke-detail', url)">
-    <div class="img">
-      <img class="rounded-xl" :src="img" alt="Dog" />
+  <nuxt-link :to="`/pokemon/${data.id}`">
+    <div class="card">
+      <div class="img">
+        <img class="rounded-xl" :src="data.img" alt="Dog" />
+      </div>
+      <div class="content">
+        <h1>{{ data.name }}</h1>
+      </div>
     </div>
-    <div class="content">
-      <h1>{{ title }}</h1>
-    </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
-  name: 'CardPoke',
+  name: 'BaseCard',
   props: {
-    title: {
-      type: String,
-      default: '',
-    },
-    url: {
-      type: String,
-      default: '',
-    },
-    img: {
-      type: String,
-      default: '',
+    data: {
+      type: Object,
+      default: () => {},
     },
   },
 })
@@ -36,7 +30,7 @@ export default defineComponent({
   @apply max-w-md bg-white rounded-xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:scale-105 transform transition-all duration-500;
 
   .img {
-    @apply p-4;
+    @apply p-4 sm:h-52 xl:h-96;
   }
 
   .content {
